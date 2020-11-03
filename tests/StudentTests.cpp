@@ -25,69 +25,69 @@ TEST_CASE("Student Grammar Tests", "[student]")
 		};
 		REQUIRE(ProcessCommandArgs(2, argv) == 0);
 	}
-	//SECTION("Test03")
-	//{
-	//	const char* argv[] = {
-	//		"tests/tests",
-	//		"input/test03.pcc"
-	//	};
-	//	REQUIRE(ProcessCommandArgs(2, argv) == 0);
-	//}
-	//SECTION("Test04")
-	//{
-	//	const char* argv[] = {
-	//		"tests/tests",
-	//		"input/test04.pcc"
-	//	};
-	//	REQUIRE(ProcessCommandArgs(2, argv) == 0);
-	//}
-	//SECTION("Test05")
-	//{
-	//	const char* argv[] = {
-	//		"tests/tests",
-	//		"input/test05.pcc"
-	//	};
-	//	REQUIRE(ProcessCommandArgs(2, argv) == 0);
-	//}
-	//SECTION("Test06")
-	//{
-	//	const char* argv[] = {
-	//		"tests/tests",
-	//		"input/test06.pcc"
-	//	};
-	//	REQUIRE(ProcessCommandArgs(2, argv) == 0);
-	//}
-	//SECTION("Fibonacci")
-	//{
-	//	const char* argv[] = {
-	//		"tests/tests",
-	//		"input/fibonacci.pcc"
-	//	};
-	//	REQUIRE(ProcessCommandArgs(2, argv) == 0);
-	//}
-	//SECTION("Star")
-	//{
-	//	const char* argv[] = {
-	//		"tests/tests",
-	//		"input/star.pcc"
-	//	};
-	//	REQUIRE(ProcessCommandArgs(2, argv) == 0);
-	//}
+	SECTION("Test03")
+	{
+		const char* argv[] = {
+			"tests/tests",
+			"input/test03.pcc"
+		};
+		REQUIRE(ProcessCommandArgs(2, argv) == 0);
+	}
+	SECTION("Test04")
+	{
+		const char* argv[] = {
+			"tests/tests",
+			"input/test04.pcc"
+		};
+		REQUIRE(ProcessCommandArgs(2, argv) == 0);
+	}
+	SECTION("Test05")
+	{
+		const char* argv[] = {
+			"tests/tests",
+			"input/test05.pcc"
+		};
+		REQUIRE(ProcessCommandArgs(2, argv) == 0);
+	}
+	SECTION("Test06")
+	{
+		const char* argv[] = {
+			"tests/tests",
+			"input/test06.pcc"
+		};
+		REQUIRE(ProcessCommandArgs(2, argv) == 0);
+	}
+	SECTION("Fibonacci")
+	{
+		const char* argv[] = {
+			"tests/tests",
+			"input/fibonacci.pcc"
+		};
+		REQUIRE(ProcessCommandArgs(2, argv) == 0);
+	}
+	SECTION("Star")
+	{
+		const char* argv[] = {
+			"tests/tests",
+			"input/star.pcc"
+		};
+		REQUIRE(ProcessCommandArgs(2, argv) == 0);
+	}
 }
 
-//TEST_CASE("Student AST Tests", "[student]")
-//{
-//	SECTION("Test01")
-//	{
-//		const char* argv[] = {
-//			"tests/tests",
-//			"input/test01.pcc",
-//			"ast"
-//		};
-//		REQUIRE(ProcessCommandArgs(3, argv) == 0);
-//		bool result = CheckTextFilesSame("ast.txt", "expected/test01.ast.txt");
-//		REQUIRE(result);
-//	}
+TEST_CASE("Student AST Tests", "[student]")
+{
+	SECTION("Test01")
+	{
+		const char* argv[] = {
+			"tests/tests",
+			"input/test01.pcc",
+			"ast"
+		};
+		REQUIRE(ProcessCommandArgs(3, argv) == 0);
+		bool result = CheckTextFilesSame("ast.txt", "expected/test01.ast.txt");
+		REQUIRE(result);
+	}
 //	SECTION("Test02")
 //	{
 //		const char* argv[] = {
@@ -165,7 +165,7 @@ TEST_CASE("Student Grammar Tests", "[student]")
 //		bool result = CheckTextFilesSame("ast.txt", "expected/star.ast.txt");
 //		REQUIRE(result);
 //	}
-//}
+}
 //
 //TEST_CASE("Student Emit Tests", "[student]")
 //{

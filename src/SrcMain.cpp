@@ -44,6 +44,10 @@ int ProcessCommandArgs(int argc, const char* argv[])
 	if (gProgram != nullptr && argc == 3)
 	{
 		// TODO: Add any needed code for Parts 2, 3, and 4!!!
+        std::ofstream output;
+        output.open("ast.txt");
+        gProgram->OutputAST(output, 0);
+        output.close();
 	}
 	else
 	{

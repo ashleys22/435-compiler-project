@@ -41,6 +41,7 @@ NProgram* gProgram = nullptr;
 
 /* Types/non-terminal symbols */
 %type <program> program
+%type <block> main
 %type <data> data decls
 %type <decl> decl;
 %type <numeric> numeric
@@ -54,18 +55,19 @@ NProgram* gProgram = nullptr;
 program		: data main 
 				{ 
 					std::cout << "Program\n";
+					gProgram = new NProgram($1, $2);
 				}
 ;
 
 data		: TDATA TLBRACE TRBRACE
 				{
 					std::cout << "Data (no decls)\n";
+					$$ = new NData();
 				}
 			| TDATA TLBRACE decls TRBRACE
 				{
 					std::cout << "Data\n";
 				}
-
 ;
 
 decls		: decl 
@@ -82,6 +84,10 @@ decl		: TVAR TIDENTIFIER TSEMI
 				{
 					std::cout << "Var declaration " << *($2) << '\n';
 				}
+			| TVAR TIDENTIFIER TEQUALS expr TSEMI
+				{
+					std::cout << "Var declaration " << *($2) << " with equals\n";
+				}
 			| TARRAY TIDENTIFIER TLBRACKET numeric TRBRACKET TSEMI
 				{
 					std::cout << "Array declaration " << *($2) << '\n';
@@ -91,10 +97,129 @@ decl		: TVAR TIDENTIFIER TSEMI
 main		: TMAIN TLBRACE TRBRACE
 				{
 					std::cout << "Main (no stmts)\n";
+					$$ = new NBlock();
+				}
+			| TMAIN TLBRACE block TRBRACE 
+				{
+					std::cout << "Main\n";
 				}
 ;
 
-expr		: numeric
+block		: statement
+				{
+					std::cout << "Single statement\n";
+				}
+			| block statement
+				{
+					std::cout << "Multiple statements\n";
+				}
+;
+
+statement	: TIDENTIFIER TEQUALS expr TSEMI 
+				{
+					std::cout << "Assignment to variable\n";
+				}
+			| TIDENTIFIER TLBRACKET expr TRBRACKET TEQUALS expr TSEMI
+				{
+					std::cout << "Assignment to array index\n";
+				}
+			| TINC TIDENTIFIER TSEMI
+				{
+					std::cout << "Pre-increment\n";
+				}
+			| TDEC TIDENTIFIER TSEMI
+				{
+					std::cout << "Pre-decrement\n";
+				}
+			| TIDENTIFIER TINC TSEMI
+				{
+					std::cout << "Post-increment\n";
+				}
+			| TIDENTIFIER TDEC TSEMI
+				{
+					std::cout << "Post-decrement\n";
+				}
+			| TIF comparison TLBRACE block TRBRACE TELSE TLBRACE block TRBRACE
+				{
+					std::cout << "if-else statement\n";
+				}
+			| TIF comparison TLBRACE block TRBRACE 
+				{
+					std::cout << "if statement\n";
+				}
+			| TWHILE comparison TLBRACE block TRBRACE
+				{
+					std::cout << "while loop\n";
+				}
+			| TPENUP TLPAREN TRPAREN TSEMI
+				{
+					std::cout << "penUp();\n";
+				}
+			| TPENDOWN TLPAREN TRPAREN TSEMI
+				{
+					std::cout << "penDown();\n";
+				}
+			| TSETPOS TLPAREN expr TCOMMA expr TRPAREN TSEMI
+				{
+					std::cout << "setPosition(int x, int y);\n";
+				}
+			| TSETCOLOR TLPAREN expr TRPAREN TSEMI
+				{
+					std::cout << "setColor(int color);\n";
+				}
+			| TFWD TLPAREN expr TRPAREN TSEMI
+				{
+					std::cout << "forward(int x);\n";
+				}
+			| TBACK TLPAREN expr TRPAREN TSEMI
+				{
+					std::cout << "back(int x);\n";
+				}
+			| TROT TLPAREN expr TRPAREN TSEMI
+				{
+					std::cout << "rotate(int x);\n";
+				}
+;
+
+comparison	: expr TISEQUAL expr 
+				{
+					std::cout << "Comparison equals\n";
+				}
+			| expr TLESS expr 
+				{
+					std::cout << "Comparison less than\n";
+				}
+;
+
+expr		: expr TADD expr 
+				{ 
+					std::cout << "+\n"; 
+				}
+			| expr TSUB expr 
+				{ 
+					std::cout << "-\n";
+				}
+			| expr TMUL expr 
+				{ 
+					std::cout << "*\n";
+				}
+			| expr TDIV expr 
+				{ 
+					std::cout << "/\n";
+				}
+			| TLPAREN expr TRPAREN 
+				{ 
+					std::cout << "()\n";
+				}
+			| TIDENTIFIER TLBRACKET expr TRBRACKET
+				{
+					std::cout << "Value in array\n";
+				}
+			| TIDENTIFIER
+				{
+					std::cout << "Identifier " << *($1) << '\n';
+				}
+			| numeric
 				{
 					std::cout << "Numeric expression\n";
 				}

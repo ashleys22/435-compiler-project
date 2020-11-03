@@ -1,10 +1,11 @@
-# ITP 435 PA6 #
+# ITP 435 PA6
 
-### EDIT BELOW ###
-Name: Tommy Trojan
+### EDIT BELOW
 
-Email: ttrojan@usc.edu
+Name: Ashley Su
 
-Section: [M/W or T/TH]
+Email: suashley@usc.edu
 
-Platform: [PC/MAC]
+Section: [T/TH]
+
+Platform: [MAC]
