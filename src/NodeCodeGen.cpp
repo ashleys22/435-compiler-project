@@ -195,7 +195,7 @@ void NIfStmt::CodeGen(CodeContext& context)
     context.regIntervals[virtualReg1].second = context.ops.size();
     context.addOp("jnt", std::vector<std::string>({virtualReg1}));
     mIfBlock->CodeGen(context);
-    if (mElseBlock) {
+    if (mElseBlock != nullptr) {
         ++context.lastReg;
         std::string virtualReg2 = "%" + std::to_string(context.lastReg);
         context.regIntervals[virtualReg2].first = context.ops.size();

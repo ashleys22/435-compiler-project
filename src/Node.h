@@ -19,7 +19,7 @@ struct CodeContext
         {
         }
     void addOp(std::string op, std::vector<std::string> params) {
-        ops.push_back(std::make_pair(op, params));
+        ops.emplace_back(std::make_pair(op, params));
     }
     std::vector<std::pair<std::string, std::vector<std::string> > > ops;
     // track which variables/arrays correspond to which indices on the stack

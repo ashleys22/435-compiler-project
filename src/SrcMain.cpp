@@ -25,10 +25,10 @@ void outputAssembly_virtual(CodeContext& c) {
     output.open("emit.txt");
     for (std::pair<std::string, std::vector<std::string> > line: c.ops) {
         output << line.first << " ";
-        for (int i = 0; i < (int)line.second.size() - 1; ++i) {
+        for (int i = 0; i < static_cast<int>(line.second.size() - 1); ++i) {
             output << line.second[i] << ",";
         }
-        if (line.second.size() > 0) {
+        if (!line.second.empty()) {
             output << line.second[line.second.size() - 1];
         }
         output << "\n";
@@ -41,7 +41,7 @@ void outputAssembly_real(CodeContext& c, const std::map<std::string, std::string
     output.open("emit.txt");
     for (std::pair<std::string, std::vector<std::string> > line: c.ops) {
         output << line.first << " ";
-        for (int i = 0; i < (int)line.second.size() - 1; ++i) {
+        for (int i = 0; i < static_cast<int>(line.second.size() - 1); ++i) {
             // if the param is a virtual register, replace with real register
             if (line.second[i].find("%") != std::string::npos) {
                 output << regMap.at(line.second[i]) << ",";
@@ -50,7 +50,7 @@ void outputAssembly_real(CodeContext& c, const std::map<std::string, std::string
                 output << line.second[i] << ",";
             }
         }
-        if (line.second.size() > 0) {
+        if (!line.second.empty()) {
             if (line.second[line.second.size() - 1].find("%") != std::string::npos) {
                 output << regMap.at(line.second[line.second.size() - 1]);
             }
@@ -85,10 +85,10 @@ void registerAllocation(CodeContext& c, std::map<std::string, std::string, regCo
             if (it->second.first == i) {
                 std::string firstAvailable;
                 // find the first available register, assuming we always have enough
-                for (auto availability_it = availability.begin(); availability_it != availability.end(); ++availability_it) {
-                    if (availability_it->second) {
-                        availability_it->second = false; // set availability to false
-                        firstAvailable = availability_it->first;
+                for (auto availabilityIt = availability.begin(); availabilityIt != availability.end(); ++availabilityIt) {
+                    if (availabilityIt->second) {
+                        availabilityIt->second = false; // set availability to false
+                        firstAvailable = availabilityIt->first;
                         break;
                     }
                 }
