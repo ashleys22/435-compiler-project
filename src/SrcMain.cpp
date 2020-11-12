@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <map>
+#include <cstring>
 
 extern int proccparse(); // NOLINT
 struct yy_buffer_state; // NOLINT
