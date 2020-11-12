@@ -4,9 +4,30 @@
 #include <ostream>
 #include <map>
 
+// defined a comparator so that map for register intervals are ordered correctly
+struct regComp {
+  bool operator() (const std::string& a, const std::string& b) const {
+      return std::stoi(a.substr(1)) < std::stoi(b.substr(1));
+  }
+};
+
 struct CodeContext
 {
 	// TODO: Add members as needed
+    CodeContext()
+            : lastReg(-1)
+        {
+        }
+    void addOp(std::string op, std::vector<std::string> params) {
+        ops.push_back(std::make_pair(op, params));
+    }
+    std::vector<std::pair<std::string, std::vector<std::string> > > ops;
+    // track which variables/arrays correspond to which indices on the stack
+    std::map<std::string, int> varIndices;
+    // virtual register name maps to pair of first,last appearance
+    // uses linear scan to allocate registers
+    std::map<std::string, std::pair<int, int>, regComp> regIntervals;
+    int lastReg;
 };
 
 class Node

@@ -4,8 +4,8 @@
 #endif
 
 #include <iostream>
-#include "Node.h"
 #include <fstream>
+#include <map>
 
 extern int proccparse(); // NOLINT
 struct yy_buffer_state; // NOLINT
@@ -18,6 +18,99 @@ extern NProgram* gProgram;
 bool gSyntaxError = false;
 
 // CHANGE ANYTHING ABOVE THIS LINE AT YOUR OWN RISK!!!!
+
+void outputAssembly_virtual(CodeContext& c) {
+    std::ofstream output;
+    output.open("emit.txt");
+    for (std::pair<std::string, std::vector<std::string> > line: c.ops) {
+        output << line.first << " ";
+        for (int i = 0; i < (int)line.second.size() - 1; ++i) {
+            output << line.second[i] << ",";
+        }
+        if (line.second.size() > 0) {
+            output << line.second[line.second.size() - 1];
+        }
+        output << "\n";
+    }
+    output.close();
+}
+
+void outputAssembly_real(CodeContext& c, const std::map<std::string, std::string, regComp>& regMap) {
+    std::ofstream output;
+    output.open("emit.txt");
+    for (std::pair<std::string, std::vector<std::string> > line: c.ops) {
+        output << line.first << " ";
+        for (int i = 0; i < (int)line.second.size() - 1; ++i) {
+            // if the param is a virtual register, replace with real register
+            if (line.second[i].find("%") != std::string::npos) {
+                output << regMap.at(line.second[i]) << ",";
+            }
+            else {
+                output << line.second[i] << ",";
+            }
+        }
+        if (line.second.size() > 0) {
+            if (line.second[line.second.size() - 1].find("%") != std::string::npos) {
+                output << regMap.at(line.second[line.second.size() - 1]);
+            }
+            else {
+                output << line.second[line.second.size() - 1];
+            }
+        }
+        output << "\n";
+    }
+    output.close();
+}
+
+void registerAllocation(CodeContext& c, std::map<std::string, std::string, regComp>& regMap) {
+    std::map<std::string, bool> availability = { {"r1", true},
+                                                 {"r2", true},
+                                                 {"r3", true},
+                                                 {"r4", true},
+                                                 {"r5", true},
+                                                 {"r6", true},
+                                                 {"r7", true} }; // register availability, initialize all to true
+    for (int i = 0; i < c.ops.size(); ++i) {
+        for (auto it = c.regIntervals.begin(); it != c.regIntervals.end(); ++it) {
+            if (i < it->second.first) {
+                break; // break out of inner loop early because instruction # should always be greater than VR's first appearance
+            }
+            // if a virtual register just expired (at the last instruction for that VR), the assigned real register is now free
+            if (it->second.second == i && it->second.first != i) {
+                std::string realReg = regMap[it->first]; // the real register assigned to the expired VR
+                availability[realReg] = true; // set the real register to available
+            }
+            // if VR is now active, assign first available real register
+            if (it->second.first == i) {
+                std::string firstAvailable;
+                // find the first available register, assuming we always have enough
+                for (auto availability_it = availability.begin(); availability_it != availability.end(); ++availability_it) {
+                    if (availability_it->second) {
+                        availability_it->second = false; // set availability to false
+                        firstAvailable = availability_it->first;
+                        break;
+                    }
+                }
+                regMap[it->first] = firstAvailable;
+            }
+        }
+    }
+}
+
+// output virtual register intervals and mapping from virtual to real registers
+void outputReg(CodeContext& c, const std::map<std::string, std::string, regComp>& regMap) {
+    std::ofstream output;
+    output.open("reg.txt");
+    output << "INTERVALS:\n";
+    for (auto it = c.regIntervals.begin(); it != c.regIntervals.end(); ++it) {
+        output << it->first << ":" << it->second.first << "," << it->second.second << "\n";
+    }
+    output << "ALLOCATION:\n";
+    for (auto it = regMap.begin(); it != regMap.end(); ++it) {
+        output << it->first << ":" << it->second << "\n";
+    }
+    output.close();
+}
 
 int ProcessCommandArgs(int argc, const char* argv[])
 {
@@ -44,10 +137,25 @@ int ProcessCommandArgs(int argc, const char* argv[])
 	if (gProgram != nullptr && argc == 3)
 	{
 		// TODO: Add any needed code for Parts 2, 3, and 4!!!
-        std::ofstream output;
-        output.open("ast.txt");
-        gProgram->OutputAST(output, 0);
-        output.close();
+        if (strcmp(argv[2], "ast") == 0) {
+            std::ofstream output;
+            output.open("ast.txt");
+            gProgram->OutputAST(output, 0);
+            output.close();
+        }
+        else if (strcmp(argv[2], "emit") == 0) {
+            CodeContext c;
+            gProgram->CodeGen(c);
+            outputAssembly_virtual(c);
+        }
+        else if (strcmp(argv[2], "reg") == 0) {
+            CodeContext c;
+            gProgram->CodeGen(c);
+            std::map<std::string, std::string, regComp> regMap;
+            registerAllocation(c, regMap);
+            outputReg(c, regMap);
+            outputAssembly_real(c, regMap);
+        }
 	}
 	else
 	{

@@ -180,176 +180,176 @@ TEST_CASE("Student Emit Tests", "[student]")
 		bool result = CheckTextFilesSame("emit.txt", "expected/test01.emit.txt");
 		REQUIRE(result);
 	}
-//	SECTION("Test02")
-//	{
-//		const char* argv[] = {
-//			"tests/tests",
-//			"input/test02.pcc",
-//			"emit"
-//		};
-//		REQUIRE(ProcessCommandArgs(3, argv) == 0);
-//		bool result = CheckTextFilesSame("emit.txt", "expected/test02.emit.txt");
-//		REQUIRE(result);
-//	}
-//	SECTION("Test03")
-//	{
-//		const char* argv[] = {
-//			"tests/tests",
-//			"input/test03.pcc",
-//			"emit"
-//		};
-//		REQUIRE(ProcessCommandArgs(3, argv) == 0);
-//		bool result = CheckTextFilesSame("emit.txt", "expected/test03.emit.txt");
-//		REQUIRE(result);
-//	}
-//	SECTION("Test04")
-//	{
-//		const char* argv[] = {
-//			"tests/tests",
-//			"input/test04.pcc",
-//			"emit"
-//		};
-//		REQUIRE(ProcessCommandArgs(3, argv) == 0);
-//		bool result = CheckTextFilesSame("emit.txt", "expected/test04.emit.txt");
-//		REQUIRE(result);
-//	}
-//	SECTION("Test05")
-//	{
-//		const char* argv[] = {
-//			"tests/tests",
-//			"input/test05.pcc",
-//			"emit"
-//		};
-//		REQUIRE(ProcessCommandArgs(3, argv) == 0);
-//		bool result = CheckTextFilesSame("emit.txt", "expected/test05.emit.txt");
-//		REQUIRE(result);
-//	}
-//	SECTION("Test06")
-//	{
-//		const char* argv[] = {
-//			"tests/tests",
-//			"input/test06.pcc",
-//			"emit"
-//		};
-//		REQUIRE(ProcessCommandArgs(3, argv) == 0);
-//		bool result = CheckTextFilesSame("emit.txt", "expected/test06.emit.txt");
-//		REQUIRE(result);
-//	}
-//	SECTION("Fibonacci")
-//	{
-//		const char* argv[] = {
-//			"tests/tests",
-//			"input/fibonacci.pcc",
-//			"emit"
-//		};
-//		REQUIRE(ProcessCommandArgs(3, argv) == 0);
-//		bool result = CheckTextFilesSame("emit.txt", "expected/fibonacci.emit.txt");
-//		REQUIRE(result);
-//	}
-//	SECTION("Star")
-//	{
-//		const char* argv[] = {
-//			"tests/tests",
-//			"input/star.pcc",
-//			"emit"
-//		};
-//		REQUIRE(ProcessCommandArgs(3, argv) == 0);
-//		bool result = CheckTextFilesSame("emit.txt", "expected/star.emit.txt");
-//		REQUIRE(result);
-//	}
+	SECTION("Test02")
+	{
+		const char* argv[] = {
+			"tests/tests",
+			"input/test02.pcc",
+			"emit"
+		};
+		REQUIRE(ProcessCommandArgs(3, argv) == 0);
+		bool result = CheckTextFilesSame("emit.txt", "expected/test02.emit.txt");
+		REQUIRE(result);
+	}
+	SECTION("Test03")
+	{
+		const char* argv[] = {
+			"tests/tests",
+			"input/test03.pcc",
+			"emit"
+		};
+		REQUIRE(ProcessCommandArgs(3, argv) == 0);
+		bool result = CheckTextFilesSame("emit.txt", "expected/test03.emit.txt");
+		REQUIRE(result);
+	}
+	SECTION("Test04")
+	{
+		const char* argv[] = {
+			"tests/tests",
+			"input/test04.pcc",
+			"emit"
+		};
+		REQUIRE(ProcessCommandArgs(3, argv) == 0);
+		bool result = CheckTextFilesSame("emit.txt", "expected/test04.emit.txt");
+		REQUIRE(result);
+	}
+	SECTION("Test05")
+	{
+		const char* argv[] = {
+			"tests/tests",
+			"input/test05.pcc",
+			"emit"
+		};
+		REQUIRE(ProcessCommandArgs(3, argv) == 0);
+		bool result = CheckTextFilesSame("emit.txt", "expected/test05.emit.txt");
+		REQUIRE(result);
+	}
+	SECTION("Test06")
+	{
+		const char* argv[] = {
+			"tests/tests",
+			"input/test06.pcc",
+			"emit"
+		};
+		REQUIRE(ProcessCommandArgs(3, argv) == 0);
+		bool result = CheckTextFilesSame("emit.txt", "expected/test06.emit.txt");
+		REQUIRE(result);
+	}
+	SECTION("Fibonacci")
+	{
+		const char* argv[] = {
+			"tests/tests",
+			"input/fibonacci.pcc",
+			"emit"
+		};
+		REQUIRE(ProcessCommandArgs(3, argv) == 0);
+		bool result = CheckTextFilesSame("emit.txt", "expected/fibonacci.emit.txt");
+		REQUIRE(result);
+	}
+	SECTION("Star")
+	{
+		const char* argv[] = {
+			"tests/tests",
+			"input/star.pcc",
+			"emit"
+		};
+		REQUIRE(ProcessCommandArgs(3, argv) == 0);
+		bool result = CheckTextFilesSame("emit.txt", "expected/star.emit.txt");
+		REQUIRE(result);
+	}
 }
 
-//TEST_CASE("Student Register Allocation Tests", "[student]")
-//{
-//	SECTION("Test02")
-//	{
-//		const char* argv[] = {
-//			"tests/tests",
-//			"input/test02.pcc",
-//			"reg"
-//		};
-//		REQUIRE(ProcessCommandArgs(3, argv) == 0);
-//		bool resultReg = CheckTextFilesSame("reg.txt", "expected/test02.reg.txt");
-//		REQUIRE(resultReg);
-//		bool resultEmit = CheckTextFilesSame("emit.txt", "expected/test02.reg.emit.txt");
-//		REQUIRE(resultEmit);
-//	}
-//	SECTION("Test03")
-//	{
-//		const char* argv[] = {
-//			"tests/tests",
-//			"input/test03.pcc",
-//			"reg"
-//		};
-//		REQUIRE(ProcessCommandArgs(3, argv) == 0);
-//		bool resultReg = CheckTextFilesSame("reg.txt", "expected/test03.reg.txt");
-//		REQUIRE(resultReg);
-//		bool resultEmit = CheckTextFilesSame("emit.txt", "expected/test03.reg.emit.txt");
-//		REQUIRE(resultEmit);
-//	}
-//	SECTION("Test04")
-//	{
-//		const char* argv[] = {
-//			"tests/tests",
-//			"input/test04.pcc",
-//			"reg"
-//		};
-//		REQUIRE(ProcessCommandArgs(3, argv) == 0);
-//		bool resultReg = CheckTextFilesSame("reg.txt", "expected/test04.reg.txt");
-//		REQUIRE(resultReg);
-//		bool resultEmit = CheckTextFilesSame("emit.txt", "expected/test04.reg.emit.txt");
-//		REQUIRE(resultEmit);
-//	}
-//	SECTION("Test05")
-//	{
-//		const char* argv[] = {
-//			"tests/tests",
-//			"input/test05.pcc",
-//			"reg"
-//		};
-//		REQUIRE(ProcessCommandArgs(3, argv) == 0);
-//		bool resultReg = CheckTextFilesSame("reg.txt", "expected/test05.reg.txt");
-//		REQUIRE(resultReg);
-//		bool resultEmit = CheckTextFilesSame("emit.txt", "expected/test05.reg.emit.txt");
-//		REQUIRE(resultEmit);
-//	}
-//	SECTION("Test06")
-//	{
-//		const char* argv[] = {
-//			"tests/tests",
-//			"input/test06.pcc",
-//			"reg"
-//		};
-//		REQUIRE(ProcessCommandArgs(3, argv) == 0);
-//		bool resultReg = CheckTextFilesSame("reg.txt", "expected/test06.reg.txt");
-//		REQUIRE(resultReg);
-//		bool resultEmit = CheckTextFilesSame("emit.txt", "expected/test06.reg.emit.txt");
-//		REQUIRE(resultEmit);
-//	}
-//	SECTION("Fibonacci")
-//	{
-//		const char* argv[] = {
-//			"tests/tests",
-//			"input/fibonacci.pcc",
-//			"reg"
-//		};
-//		REQUIRE(ProcessCommandArgs(3, argv) == 0);
-//		bool resultReg = CheckTextFilesSame("reg.txt", "expected/fibonacci.reg.txt");
-//		REQUIRE(resultReg);
-//		bool resultEmit = CheckTextFilesSame("emit.txt", "expected/fibonacci.reg.emit.txt");
-//		REQUIRE(resultEmit);
-//	}
-//	SECTION("Star")
-//	{
-//		const char* argv[] = {
-//			"tests/tests",
-//			"input/star.pcc",
-//			"reg"
-//		};
-//		REQUIRE(ProcessCommandArgs(3, argv) == 0);
-//		bool resultReg = CheckTextFilesSame("reg.txt", "expected/star.reg.txt");
-//		REQUIRE(resultReg);
-//		bool resultEmit = CheckTextFilesSame("emit.txt", "expected/star.reg.emit.txt");
-//		REQUIRE(resultEmit);
-//	}
-//}
+TEST_CASE("Student Register Allocation Tests", "[student]")
+{
+	SECTION("Test02")
+	{
+		const char* argv[] = {
+			"tests/tests",
+			"input/test02.pcc",
+			"reg"
+		};
+		REQUIRE(ProcessCommandArgs(3, argv) == 0);
+		bool resultReg = CheckTextFilesSame("reg.txt", "expected/test02.reg.txt");
+		REQUIRE(resultReg);
+		bool resultEmit = CheckTextFilesSame("emit.txt", "expected/test02.reg.emit.txt");
+		REQUIRE(resultEmit);
+	}
+	SECTION("Test03")
+	{
+		const char* argv[] = {
+			"tests/tests",
+			"input/test03.pcc",
+			"reg"
+		};
+		REQUIRE(ProcessCommandArgs(3, argv) == 0);
+		bool resultReg = CheckTextFilesSame("reg.txt", "expected/test03.reg.txt");
+		REQUIRE(resultReg);
+		bool resultEmit = CheckTextFilesSame("emit.txt", "expected/test03.reg.emit.txt");
+		REQUIRE(resultEmit);
+	}
+	SECTION("Test04")
+	{
+		const char* argv[] = {
+			"tests/tests",
+			"input/test04.pcc",
+			"reg"
+		};
+		REQUIRE(ProcessCommandArgs(3, argv) == 0);
+		bool resultReg = CheckTextFilesSame("reg.txt", "expected/test04.reg.txt");
+		REQUIRE(resultReg);
+		bool resultEmit = CheckTextFilesSame("emit.txt", "expected/test04.reg.emit.txt");
+		REQUIRE(resultEmit);
+	}
+	SECTION("Test05")
+	{
+		const char* argv[] = {
+			"tests/tests",
+			"input/test05.pcc",
+			"reg"
+		};
+		REQUIRE(ProcessCommandArgs(3, argv) == 0);
+		bool resultReg = CheckTextFilesSame("reg.txt", "expected/test05.reg.txt");
+		REQUIRE(resultReg);
+		bool resultEmit = CheckTextFilesSame("emit.txt", "expected/test05.reg.emit.txt");
+		REQUIRE(resultEmit);
+	}
+	SECTION("Test06")
+	{
+		const char* argv[] = {
+			"tests/tests",
+			"input/test06.pcc",
+			"reg"
+		};
+		REQUIRE(ProcessCommandArgs(3, argv) == 0);
+		bool resultReg = CheckTextFilesSame("reg.txt", "expected/test06.reg.txt");
+		REQUIRE(resultReg);
+		bool resultEmit = CheckTextFilesSame("emit.txt", "expected/test06.reg.emit.txt");
+		REQUIRE(resultEmit);
+	}
+	SECTION("Fibonacci")
+	{
+		const char* argv[] = {
+			"tests/tests",
+			"input/fibonacci.pcc",
+			"reg"
+		};
+		REQUIRE(ProcessCommandArgs(3, argv) == 0);
+		bool resultReg = CheckTextFilesSame("reg.txt", "expected/fibonacci.reg.txt");
+		REQUIRE(resultReg);
+		bool resultEmit = CheckTextFilesSame("emit.txt", "expected/fibonacci.reg.emit.txt");
+		REQUIRE(resultEmit);
+	}
+	SECTION("Star")
+	{
+		const char* argv[] = {
+			"tests/tests",
+			"input/star.pcc",
+			"reg"
+		};
+		REQUIRE(ProcessCommandArgs(3, argv) == 0);
+		bool resultReg = CheckTextFilesSame("reg.txt", "expected/star.reg.txt");
+		REQUIRE(resultReg);
+		bool resultEmit = CheckTextFilesSame("emit.txt", "expected/star.reg.emit.txt");
+		REQUIRE(resultEmit);
+	}
+}
